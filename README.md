@@ -9,3 +9,9 @@ $ docker build -t aiwebapp-test:v1 .
 ```
 $ docker run -d --name test1 -p 5000:5000 aiwebapp-test:v1
 ```
+
+### How to access the app
+Access the following URL in browser:
+```
+http://<board_ip>:5000
+```
