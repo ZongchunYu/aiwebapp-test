@@ -1,0 +1,26 @@
+version: 0.2
+
+env:
+  variables:
+    IMAGE_REPO: "aiwebapp-demo"
+    IMAGE_TAG: "v1"
+
+phases:
+  install:
+    commands:
+      - pip --version && pip install aws-shell && aws --version
+  pre_build:
+    commands:
+      - echo Logging in to DockerHub...
+      - docker login -u edgerepos -p edgerepos001
+  build:
+    commands:
+      - echo Build started on `date`
+      - echo Building the Docker image...
+      - docker build -t $IMAGE_REPO:$IMAGE_TAG .
+      - echo Build completed on `date`
+  post_build:
+    commands:
+      - echo Pushing the Docker image...
+      - docker tag $IMAGE_REPO:$IMAGE_TAG edgerepos/$IMAGE_REPO:$IMAGE_TAG
+      - docker push edgerepos/$IMAGE_REPO:$IMAGE_TAG
