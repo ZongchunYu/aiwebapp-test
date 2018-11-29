@@ -24,3 +24,6 @@ phases:
       - echo Pushing the Docker image...
       - docker tag $IMAGE_REPO:$IMAGE_TAG edgerepos/$IMAGE_REPO:$IMAGE_TAG
       - docker push edgerepos/$IMAGE_REPO:$IMAGE_TAG
+      - datetime=`date '+%Y%m%d%H%M%S'`
+      - touch $datetime
+      - aws s3 cp $datetime s3://edgescale.ci/
