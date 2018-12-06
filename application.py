@@ -13,7 +13,7 @@ ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
 
 SCRIPT = "/root/sxl/models/tutorials/image/imagenet/classify_image.py"
 
-msg = "Welcome User"
+msg = os.environ['TITLE'] if 'TITLE' in os.environ else ''
 
 
 def list_history(results=None):
